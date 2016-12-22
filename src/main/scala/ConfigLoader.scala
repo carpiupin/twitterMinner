@@ -9,4 +9,6 @@ object ConfigLoader {
   val consumerSecret = conf.getString("CONSUMER_SECRET")
   val accessToken = conf.getString("ACCESS_TOKEN_KEY")
   val accessTokenSecret = conf.getString("ACCESS_TOKEN_SECRET")
+  
+  val masterEndpoint = conf.getString("MASTER_ENDPOINT")
 }
