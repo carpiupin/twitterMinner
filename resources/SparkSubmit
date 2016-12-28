@@ -1,0 +1,1 @@
+./spark-submit --class App --master local[2] /home/piury/PIURY/BigData/eclipse-workspace/twitterMinner/target/twitterMinner-0.0.1-SNAPSHOT-jar-with-dependencies.jar 
