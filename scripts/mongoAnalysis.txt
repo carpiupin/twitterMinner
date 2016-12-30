@@ -1,0 +1,24 @@
+/*
+ Execute spark-shell with the following command:
+./spark-shell --conf "spark.mongodb.input.uri=mongodb://127.0.0.1/twitterMinner.tweets?readPreference=primaryPreferred" --conf "spark.mongodb.output.uri=mongodb://127.0.0.1/twitterMinner.tweets" --packages org.mongodb.spark:mongo-spark-connector_2.11:2.0.0
+*/
+
+
+import com.mongodb.spark._
+
+// Load MongoDB collection
+val rdd = MongoSpark.load(sc)
+
+rdd.first().get({"accountName"})
+
+// Map-Reduce to get the number of repeated "accountNames"
+val mapping = rdd.map(row => (row.get({"accountName"}), 1))
+val reducing = mapping.reduceByKey((a, b) => a + b)
+
+// Get a sample
+val multi = reducing.filter( x => x._2 > 1)
+multi.first()
+multi.count()
+val res = rdd.filter( row => row.get({"accountName"}) == "god_in_crisis")
+res.count
+res.take(3)

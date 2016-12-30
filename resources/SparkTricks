@@ -1,0 +1,7 @@
+
+## Submit twitterMinner jar app to the spark cluster
+./spark-submit --class App --master local[2] /home/piury/PIURY/BigData/eclipse-workspace/twitterMinner/target/twitterMinner-0.0.1-SNAPSHOT-jar-with-dependencies.jar 
+
+## Run spark-shell with connection to mongo
+./spark-shell --conf "spark.mongodb.input.uri=mongodb://127.0.0.1/twitterMinner.tweets?readPreference=primaryPreferred" --conf "spark.mongodb.output.uri=mongodb://127.0.0.1/twitterMinner.tweets" --packages org.mongodb.spark:mongo-spark-connector_2.11:2.0.0
+
